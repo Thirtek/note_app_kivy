@@ -1,0 +1,70 @@
+<BackgroundLabel@Label+Widget>:
+    background_color: 0,0,0,0
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+<MainWindow>:
+    orientation: 'vertical'
+
+    BackgroundLabel:
+        text: "All notes"
+        background_color: (0,0,1,1)
+        size_hint: (1, 0.15)
+
+    NoteWindow:
+        id: note_window
+        orientation: "vertical"
+
+    Button:
+        text: "New note"
+        size_hint: (1, 0.1)
+        on_press: root.new_note()
+
+
+<NewNoteWindow>:
+    orientation: "vertical"
+
+    TextInput:
+        id: title_input
+        hint_text: "Title"
+        size_hint: (1, None)
+        multiline: False
+    TextInput:
+        id: description_input
+        hint_text: "Description"
+        size_hint: (1, 0.6)
+    Label:
+        size_hint: (1, 0.1)
+
+    Button:
+        text: "Add Note"
+        size_hint: (1, 0.1)
+        on_press: root.add_note()
+
+<NoteModel>:
+    orientation: "horizontal"
+    size_hint: (1, 0.1)
+
+
+<NoteWindowModel>:
+    orientation: "vertical"
+
+    Label:
+        id: note_title
+        size_hint: (1, 0.15)
+        halign: "center"
+        text: ""
+
+    TextInput:
+        id: description_update
+        size_hint: (1, 0.7)
+
+    Button:
+        size_hint: (1, 0.15)
+        text: "Save and go back"
+        on_press: root.update_note()
